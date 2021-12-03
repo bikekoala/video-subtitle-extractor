@@ -22,7 +22,6 @@ from PIL import Image, ImageDraw, ImageFont
 import math
 from paddle import inference
 
-
 def parse_args():
     def str2bool(v):
         return v.lower() in ("true", "t", "1")
@@ -85,6 +84,13 @@ def parse_args():
 
     parser.add_argument("--enable_mkldnn", type=str2bool, default=False)
     parser.add_argument("--use_pdserving", type=str2bool, default=False)
+
+    # hack: 脚本参数
+    parser.add_argument('--xmin', help='字幕区域 最小X轴 ', type=int)
+    parser.add_argument('--xmax', help='字幕区域 最大X轴 ', type=int)
+    parser.add_argument('--ymin', help='字幕区域 最小Y轴 ', type=int)
+    parser.add_argument('--ymax', help='字幕区域 最大Y轴 ', type=int)
+    parser.add_argument('--video', help='视频完整路径 ', type=str)
 
     return parser.parse_args()
 
